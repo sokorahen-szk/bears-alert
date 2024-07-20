@@ -13,13 +13,18 @@ type Response struct {
 	Message string `json:"message"`
 }
 
-func handler(ctx context.Context) (*Response, error) {
-	usecase := usecases.NewGetBearsDetailUsecase(
-		repositories.NewBearsDetailRepository(),
-		fukui_bear_information.NewFukuiBearInformationUsecase(),
-	)
+type Handler struct {
+	usecase *usecases.GetBearsDetailUsecase
+}
 
-	err := usecase.Exec(ctx)
+func NewHandler(usecase *usecases.GetBearsDetailUsecase) *Handler {
+	return &Handler{
+		usecase: usecase,
+	}
+}
+
+func (h Handler) Handle(ctx context.Context) (*Response, error) {
+	err := h.usecase.Exec(ctx)
 	if err != nil {
 		return &Response{
 			Message: "error",
@@ -32,5 +37,11 @@ func handler(ctx context.Context) (*Response, error) {
 }
 
 func main() {
-	lambda.Start(handler)
+	handler := NewHandler(
+		usecases.NewGetBearsDetailUsecase(
+			repositories.NewBearsDetailRepository(),
+			fukui_bear_information.NewFukuiBearInformationRepository(),
+		),
+	)
+	lambda.Start(handler.Handle)
 }

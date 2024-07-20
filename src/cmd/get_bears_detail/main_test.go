@@ -1,7 +1,9 @@
-package main
+package main_test
 
-import "testing"
+import (
+	"testing"
+)
 
-func TestMain(t *testing.T) {
+func TestHandler(t *testing.T) {
 	// TODO:
 }

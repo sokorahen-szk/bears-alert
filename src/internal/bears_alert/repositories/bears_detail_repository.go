@@ -6,17 +6,17 @@ import (
 	"github.com/sokorahen-szk/bears-alert/internal/bears_alert/domain"
 )
 
-type bearsDetailRepository struct {
+type BearsDetailRepository struct {
 }
 
-func NewBearsDetailRepository() bearsDetailRepository {
-	return bearsDetailRepository{}
+func NewBearsDetailRepository() domain.IBearsDetailRepository {
+	return new(BearsDetailRepository)
 }
 
-func (bdr bearsDetailRepository) Insert(context.Context, *domain.BearsDetail) error {
+func (bdr BearsDetailRepository) Insert(context.Context, *domain.BearsDetail) error {
 	return nil
 }
 
-func (bdr bearsDetailRepository) List(context.Context) ([]domain.BearsDetail, error) {
+func (bdr BearsDetailRepository) List(context.Context) ([]*domain.BearsDetail, error) {
 	return nil, nil
 }
