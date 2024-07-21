@@ -7,6 +7,7 @@ import (
 )
 
 type BearsDetailRepository struct {
+	Client *DynamodbClient
 }
 
 func NewBearsDetailRepository() domain.IBearsDetailRepository {

@@ -1,6 +1,7 @@
 package domain
 
 type BearsDetail struct {
+	ID                       string
 	Kind                     string
 	Location                 BearsDetailLocation
 	EyewitnessClassification string
@@ -13,4 +14,5 @@ type BearsDetail struct {
 type BearsDetailLocation struct {
 	Prefectures    string
 	Municipalities string
+	Location       string
 }
